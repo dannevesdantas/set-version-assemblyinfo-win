@@ -17,8 +17,8 @@ outputs:
     description: 'The resulting location of msbuild for your inputs'
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
-    - run: ${{ github.action_path }}/SetVersion
+    - run: '${{ github.action_path }}/SetVersion.ps1 ${{ inputs.version }}'
       shell: powershell
       
