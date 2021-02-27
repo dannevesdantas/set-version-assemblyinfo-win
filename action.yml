@@ -19,6 +19,6 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: ${{ github.action_path }}/SetVersion.ps1
+    - run: ${{ github.action_path }}/SetVersion
       shell: pwsh
       
