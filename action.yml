@@ -20,5 +20,5 @@ runs:
   using: "composite"
   steps:
     - run: ${{ github.action_path }}/SetVersion
-      shell: pwsh
+      shell: powershell
       
