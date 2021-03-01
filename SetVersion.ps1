@@ -64,7 +64,7 @@ if ($r.Success)
 else
 {
   echo " ";
-  echo "Bad Input!"
+  Write-Error "Bad Input!"
   echo " ";
   Usage ;
 }
