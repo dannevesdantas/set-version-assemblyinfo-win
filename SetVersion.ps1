@@ -64,6 +64,6 @@ if ($r.Success)
 }
 else
 {
-  Write-Error -Message "Bad Input! From cmd.exe: From powershell.exe prompt: .\SetVersion.ps1 2.8.3.0" -Category InvalidArgument -ErrorAction Stop
+  Write-Error -Message "Bad Input! From powershell.exe prompt: .\SetVersion.ps1 2.8.3.0" -Category InvalidArgument -ErrorAction Stop
   #Usage ;
 }
