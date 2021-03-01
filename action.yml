@@ -12,9 +12,6 @@ inputs:
   version:
     description: 'Version number to set on [AssemblyVersion] and [AssemblyFileVersion] attributes of AssemblyInfo.cs or AssemblyInfo.vb files'
     required: true
-outputs:
-  msbuildPath:
-    description: 'The resulting location of msbuild for your inputs'
 
 runs:
   using: 'composite'
