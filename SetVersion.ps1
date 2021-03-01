@@ -15,13 +15,13 @@
 
 function Usage
 {
-  echo "Usage: ";
-  echo "  from cmd.exe: ";
-  echo "     powershell.exe SetVersion.ps1  2.8.3.0";
-  echo " ";
-  echo "  from powershell.exe prompt: ";
-  echo "     .\SetVersion.ps1  2.8.3.0";
-  echo " ";
+  Write-Error "Usage: ";
+  Write-Error "  from cmd.exe: ";
+  Write-Error "     powershell.exe SetVersion.ps1  2.8.3.0";
+  Write-Error " ";
+  Write-Error "  from powershell.exe prompt: ";
+  Write-Error "     .\SetVersion.ps1  2.8.3.0";
+  Write-Error " " -ErrorAction Stop;
 }
 
 
@@ -63,8 +63,8 @@ if ($r.Success)
 }
 else
 {
-  echo " ";
+  Write-Error " ";
   Write-Error "Bad Input!"
-  echo " ";
+  Write-Error " ";
   Usage ;
 }
