@@ -10,18 +10,19 @@
 #     .\SetVersion.ps1  2.8.3.0
 #
 # last saved Time-stamp: <Wednesday, April 23, 2008  11:52:15  (by dinoch)>
+# edited by dannevesdantas on 03-01-2021
 #
 
 
 function Usage
 {
-  Write-Error "Usage: ";
-  Write-Error "  from cmd.exe: ";
-  Write-Error "     powershell.exe SetVersion.ps1  2.8.3.0";
-  Write-Error " ";
-  Write-Error "  from powershell.exe prompt: ";
-  Write-Error "     .\SetVersion.ps1  2.8.3.0";
-  Write-Error " " -ErrorAction Stop;
+  echo "Usage: ";
+  echo "  from cmd.exe: ";
+  echo "     powershell.exe SetVersion.ps1  2.8.3.0";
+  echo " ";
+  echo "  from powershell.exe prompt: ";
+  echo "     .\SetVersion.ps1  2.8.3.0";
+  echo " ";
 }
 
 
@@ -63,8 +64,6 @@ if ($r.Success)
 }
 else
 {
-  Write-Error " ";
-  Write-Error "Bad Input!"
-  Write-Error " ";
-  Usage ;
+  Write-Error -Message "Bad Input! From cmd.exe: From powershell.exe prompt: .\SetVersion.ps1 2.8.3.0" -Category InvalidArgument -ErrorAction Stop
+  #Usage ;
 }
