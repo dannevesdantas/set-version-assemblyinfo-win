@@ -5,7 +5,7 @@ Set the version in all the AssemblyInfo.cs or AssemblyInfo.vb files in any subdi
 
 ```yml
 - name: Set version on AssemblyInfo.cs
-  uses: dannevesdantas/set-version-assemblyinfo-win@v0.1.4
+  uses: dannevesdantas/set-version-assemblyinfo-win@v0.1.9
   with:
     version: '3.2.0'
 ```
