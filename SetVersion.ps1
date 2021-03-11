@@ -14,11 +14,10 @@
 #
 
 param (
-    [Parameter(Mandatory = $true)][string]$version
+  [Parameter(Mandatory = $true)][string]$version
 )
 
-function Usage
-{
+function Usage {
   echo "Usage: ";
   echo "  from cmd.exe: ";
   echo "     powershell.exe SetVersion.ps1  2.8.3.0";
@@ -29,45 +28,39 @@ function Usage
 }
 
 
-function Update-SourceVersion
-{
+function Update-SourceVersion {
   Param ([string]$Version)
   $NewVersion = 'AssemblyVersion("' + $Version + '")';
   $NewFileVersion = 'AssemblyFileVersion("' + $Version + '")';
 
-  foreach ($o in $input) 
-  {
+  foreach ($o in $input) {
     Write-output $o.FullName
     $TmpFile = $o.FullName + ".tmp"
 
-     Get-Content $o.FullName -encoding utf8 |
-        %{$_ -replace 'AssemblyVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)', $NewVersion } |
-        %{$_ -replace 'AssemblyFileVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)', $NewFileVersion }  |
-        Set-Content $TmpFile -encoding utf8
+    Get-Content $o.FullName -encoding utf8 |
+    % { $_ -replace 'AssemblyVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)', $NewVersion } |
+    % { $_ -replace 'AssemblyFileVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)', $NewFileVersion }  |
+    Set-Content $TmpFile -encoding utf8
     
     move-item $TmpFile $o.FullName -force
   }
 }
 
 
-function Update-AllAssemblyInfoFiles ( $version )
-{
-  foreach ($file in "AssemblyInfo.cs", "AssemblyInfo.vb" ) 
-  {
-    get-childitem -recurse |? {$_.Name -eq $file} | Update-SourceVersion $version ;
+function Update-AllAssemblyInfoFiles ( $version ) {
+  foreach ($file in "AssemblyInfo.cs", "AssemblyInfo.vb" ) {
+    get-childitem -recurse | ? { $_.Name -eq $file } | Update-SourceVersion $version ;
   }
 }
 
 
 # validate arguments 
-$r= [System.Text.RegularExpressions.Regex]::Match($args[0], "^[0-9]+(\.[0-9]+){1,3}$");
+$r = [System.Text.RegularExpressions.Regex]::Match($args[0], "^[0-9]+(\.[0-9]+){1,3}$");
 
-if ($r.Success)
-{
+if ($r.Success) {
   Update-AllAssemblyInfoFiles $args[0];
 }
-else
-{
+else {
   Write-Error -Message "Bad Input! From powershell.exe prompt: .\SetVersion.ps1 2.8.3.0" -Category InvalidArgument -ErrorAction Stop
   #Usage ;
 }
