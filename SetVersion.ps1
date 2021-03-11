@@ -37,11 +37,12 @@ function Update-SourceVersion
     Write-output $o.FullName
     $TmpFile = $o.FullName + ".tmp"
 
-     get-content $o.FullName | 
+     Get-Content $o.FullName -encoding utf8 |
         %{$_ -replace 'AssemblyVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)', $NewVersion } |
-        %{$_ -replace 'AssemblyFileVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)', $NewFileVersion }  > $TmpFile
-
-     move-item $TmpFile $o.FullName -force
+        %{$_ -replace 'AssemblyFileVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)', $NewFileVersion }  |
+        Set-Content $TmpFile -encoding utf8
+    
+    move-item $TmpFile $o.FullName -force
   }
 }
 
