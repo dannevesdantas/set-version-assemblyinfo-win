@@ -13,6 +13,9 @@
 # edited by dannevesdantas on 03-01-2021
 #
 
+param (
+    [Parameter(Mandatory = $true)][string]$version
+)
 
 function Usage
 {
